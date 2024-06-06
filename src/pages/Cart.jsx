@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Section } from "../components";
 import { CustomButton } from "../components";
 import { useSelector, useDispatch } from "react-redux";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   actDeleteItem,
   actGetCartItems,
@@ -18,8 +19,11 @@ const Cart = () => {
     dispatch(actGetProductsFullInfo());
   }, [dispatch, items]);
 
-  console.log(productsFullInfo);
-
+  const subtotal = productsFullInfo.reduce((accumulator, el) => {
+    const price = +el.price;
+    // const quantity = el.quantity;
+    return accumulator + price;
+  }, 0);
   return (
     <Section header={"cart"} title={"Cart items"}>
       <div className="space-y-5">
@@ -36,22 +40,25 @@ const Cart = () => {
                 key={idx}
                 className="flex flex-row shadow items-center justify-between p-3 border border-gray-300"
               >
-                <div className="flex-1">
-                  <p>{item.title}</p>
-                  <CustomButton
-                    title={"remove"}
-                    className={"text-xs p-1"}
-                    onClick={() => {
-                      setSetshouldRender(!shouldRender);
-                      dispatch(
-                        actDeleteItem(
-                          items.filter((product) => {
-                            return product.item.productId == item.id;
-                          })[0].id
-                        )
-                      );
-                    }}
-                  />
+                <div className="flex-1 flex-row flex space-x-2">
+                  <img src={item.img} alt="" className="w-14" />
+                  <div className="">
+                    <p>{item.title}</p>
+                    <CustomButton
+                      title={"remove"}
+                      className={"text-xs p-1"}
+                      onClick={() => {
+                        setSetshouldRender(!shouldRender);
+                        dispatch(
+                          actDeleteItem(
+                            items.filter((product) => {
+                              return product.item.productId == item.id;
+                            })[0].id
+                          )
+                        );
+                      }}
+                    />
+                  </div>
                 </div>
                 <p className="flex-1">${(+item.price).toFixed(2)}</p>
                 <p className="flex-1">{item.quantity || 1}</p>
@@ -77,7 +84,7 @@ const Cart = () => {
           <p className="font-bold tracking-wide text-sm ">Cart Total </p>
           <div className="flex flex-row justify-between border-b py-5">
             <p className="text-xs font-semibold">Subtotal:</p>
-            <p className="text-xs font-semibold"> $150</p>
+            <p className="text-xs font-semibold"> ${subtotal}</p>
           </div>
           <div className="flex flex-row justify-between border-b py-5">
             <p className="text-xs font-semibold">Shipping:</p>
@@ -85,7 +92,7 @@ const Cart = () => {
           </div>
           <div className="flex flex-row justify-between py-5">
             <p className="text-xs font-semibold">Total:</p>
-            <p className="text-xs font-semibold"> $150</p>
+            <p className="text-xs font-semibold"> ${subtotal}</p>
           </div>
           <CustomButton
             title={"Procees to checkout"}

@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { actAddToCart, actGetCartItems } from "../store/cart/cartSlice";
 import { useEffect } from "react";
+import IconButton from "@mui/material/IconButton";
+
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -9,21 +13,21 @@ const ProductCard = ({ product }) => {
     <div className="">
       {/* product image and add to cart */}
       <div className="w-[250px] h-[215px] rounded-sm border flex flex-col overflow-hidden">
-        <div className="h-[177px] bg-gray-100 relative ">
+        <div className="h-[177px] bg-gray-100 relative flex justify-center items-center ">
           <img
             src={product.img || ""}
             alt={product.title || "product img"}
-            className="w-full h-full contain-content"
+            className="h-full contain-content"
           />
-          <button className="absolute top-2 right-2 bg-white rounded-full ">
-            Icon
+          <button className="absolute top-2 right-2 ">
+            <AddShoppingCartIcon />
           </button>
-          <button className="absolute top-10 right-2 bg-white rounded-full ">
-            Icon
+          <button className="absolute top-10  right-2">
+            <VisibilityIcon />
           </button>
-          <button className="absolute top-2 left-2 bg-red-500 rounded-sm px-2 text-xs ">
+          <p className="absolute top-2 left-2 bg-red-500 rounded-sm px-4 py-1 text-white text-xs ">
             -40%
-          </button>
+          </p>
         </div>
         <div className="h-[38px] bg-black w-full flex justify-center items-center ">
           <button

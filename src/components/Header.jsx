@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { actGetCartItems } from "../store/cart/cartSlice";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import PersonIcon from "@mui/icons-material/Person";
+import SearchIcon from "@mui/icons-material/Search";
 function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,7 +18,7 @@ function Header() {
     <header className="border-b-2  ">
       <div className=" bg-black p-2 text-sm text-white flex item-center justify-center">
         <p>
-          summer sale
+          Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!{" "}
           <span className=" ml-2 underline font-semibold hover:cursor-pointer">
             ShopNow
           </span>
@@ -25,7 +28,6 @@ function Header() {
         <Link>
           <p className="font-bold text-3xl ">Exclusive</p>
         </Link>
-
         <div className="flex-1 items-center justify-around flex">
           <div className="flex space-x-4 items-center">
             <Link>
@@ -56,14 +58,25 @@ function Header() {
             placeholder="what are you locking for ?"
             className="bg-gray-100 p-2 text-xs rounded-lg outline-none border-none"
           />
-          <button className="text-xs">searchicon</button>
+          <button className="text-xs">
+            <SearchIcon />
+          </button>
         </div>
-        <button className="text-xs">heartIcon</button>
-        <Link to={"/cart"}>
-          <button className="text-xs">cartIcon</button>
+        <Link to={"/wishlist"}>
+          <button className="text-xs">
+            <FavoriteIcon />
+          </button>
         </Link>
-
-        <button className="text-xs">personIcon</button>
+        <Link to={"/cart"}>
+          <button className="text-xs">
+            <ShoppingCartIcon />
+          </button>
+        </Link>
+        <Link to={"/cart"}>
+          <button className="text-xs">
+            <PersonIcon />
+          </button>
+        </Link>{" "}
       </nav>
     </header>
   );

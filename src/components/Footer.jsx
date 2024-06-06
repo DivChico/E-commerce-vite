@@ -48,7 +48,9 @@ const Footer = () => {
         </div>
       </div>
       <div className="p-5 mt-5 border-gray-500 border-t">
-        <p className="text-gray-500 text-base text-center  ">copyright</p>
+        <p className="text-gray-500 text-base text-center  ">
+          Copyright Rimel 2022. All right reserved
+        </p>
       </div>
     </footer>
   );

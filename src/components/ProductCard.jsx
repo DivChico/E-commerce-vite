@@ -5,12 +5,14 @@ import IconButton from "@mui/material/IconButton";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
-    <div className="">
+    <div className="" onClick={() => navigate("/product")}>
       {/* product image and add to cart */}
       <div className="w-[250px] h-[215px] rounded-sm border flex flex-col overflow-hidden">
         <div className="h-[177px] bg-gray-100 relative flex justify-center items-center ">
@@ -32,7 +34,8 @@ const ProductCard = ({ product }) => {
         <div className="h-[38px] bg-black w-full flex justify-center items-center ">
           <button
             className="flex justify-center w-full items-center"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               dispatch(
                 actAddToCart({
                   productId: product.id,

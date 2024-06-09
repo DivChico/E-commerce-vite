@@ -38,7 +38,7 @@ const Hero = () => {
         </ul>
       </div>
       {/* carousel */}
-      <div className="w-3/4 flex items-center justify-center"> carousel</div>
+      <div className="w-3/4 flex items-center justify-center"> </div>
     </div>
   );
 };
